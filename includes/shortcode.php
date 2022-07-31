@@ -117,7 +117,7 @@ function wptcd_content_shortcode() {
                     </div>
                     <style>
                         #wptcd-product-table thead tr th {
-                            color: <?php echo ($tbl_header_txt_color!='')?$tbl_header_txt_color:''?>;
+                            color: <?php echo ($tbl_header_txt_color != '') ? esc_html($tbl_header_txt_color) : ''?>;
                         }
                         <?php
                             if ( $show_search_box == 'checked' ) {
@@ -129,8 +129,8 @@ function wptcd_content_shortcode() {
                             }
                         ?>
                     </style>
-                    <table id="wptcd-product-table" class="display" style="width:100%; min-height: 100px;<?php echo ($tbl_border_color!='')?'border: 1px solid '.$tbl_border_color:''?>">
-                        <thead style="<?php echo ($tbl_header_bg_color!='')?'background: '.$tbl_header_bg_color:''?>">
+                    <table id="wptcd-product-table" class="display" style="width:100%; min-height: 100px;<?php echo ($tbl_border_color != '') ? 'border: 1px solid '.esc_html($tbl_border_color) : ''?>">
+                        <thead style="<?php echo ($tbl_header_bg_color != '') ? 'background: '.esc_html($tbl_header_bg_color) : ''?>">
                             <tr>
                                 <th class="d-none"><?php _e('Category slug', 'wc-product-table' )?></th>
                                 <th><?php _e('Image', 'wc-product-table' )?></th>

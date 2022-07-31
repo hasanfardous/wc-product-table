@@ -75,9 +75,6 @@
 
     // Resetting the query
     wp_reset_query();
-
-    // Sending the response to frontend
-    $wptcd_products_json = json_encode( $wptcd_products );
 ?>
 
 <!-- Product table js configurations -->
@@ -85,21 +82,21 @@
     (function ($) {
         $(document).ready( function () {
             $('#wptcd-product-table').DataTable( {
-                data: <?php echo $wptcd_products_json?>,
+                data: <?php echo wp_json_encode($wptcd_products)?>,
                 createdRow: function(row, data, dataIndex){
                     $(row).find('td:not(:last-child) a').css({
-                        'color': '<?php echo ($tbl_cell_txt_color!='')?$tbl_cell_txt_color:''?>',
+                        'color': '<?php echo ($tbl_cell_txt_color != '') ? esc_html($tbl_cell_txt_color) : ''?>',
                     });
                     $(row).find('td:last-child .wptcd-add-to-cart').css({
-                        'background-color': '<?php echo $add_to_cart_btn_color?>',
-                        'border-color': '<?php echo $add_to_cart_btn_color?>',
+                        'background-color': '<?php echo esc_html($add_to_cart_btn_color)?>',
+                        'border-color': '<?php echo esc_html($add_to_cart_btn_color)?>',
                     });
                     $(row).find('td').css({
-                        'color': '<?php echo ($tbl_cell_txt_color!='')?$tbl_cell_txt_color:''?>',
-                        'background-color': '<?php echo ($tbl_cell_bg_color!='')?$tbl_cell_bg_color:''?>',
+                        'color': '<?php echo ($tbl_cell_txt_color != '') ? esc_html($tbl_cell_txt_color) : ''?>',
+                        'background-color': '<?php echo ($tbl_cell_bg_color != '') ? esc_html($tbl_cell_bg_color) : '' ?>',
                     });
                 },
-                pageLength: <?php echo $rows_per_page?>,
+                pageLength: <?php echo absint($rows_per_page)?>,
                 searching: true,
                 lengthChange: false,
                 columns: [
